@@ -1,0 +1,58 @@
+/* Import a modern font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+/* Base styles for the LinkButton */
+.link-button {
+  display: inline-block;
+  padding: 0.75rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out, transform 0.2s ease-in-out;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+}
+
+/* Variants */
+.link-button.primary {
+  background: linear-gradient(135deg, #4e8cff, #335dff);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.link-button.primary:hover {
+  background: linear-gradient(135deg, #3b6ee3, #244edb);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.link-button.secondary {
+  background: white;
+  color: #335dff;
+  border: 2px solid #335dff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.link-button.secondary:hover {
+  background: #e6eeff;
+  color: #244edb;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Focus styles for accessibility */
+.link-button:focus {
+  outline: 3px dashed #4e8cff;
+  outline-offset: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .link-button {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.4rem;
+  }
+}

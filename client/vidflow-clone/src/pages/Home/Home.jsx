@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import LinkButton from '../../components/LinkButton/LinkButton';
 
 const Home = () => {
   const [data, setData] = useState(null);
@@ -17,6 +18,7 @@ const Home = () => {
   return (
     <div>
       <h1>{data ? data.message : "Loading..."}</h1>
+      <LinkButton to="/about" variant="primary">About</LinkButton>
     </div>
   );
 };
