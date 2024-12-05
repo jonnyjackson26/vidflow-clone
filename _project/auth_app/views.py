@@ -26,15 +26,35 @@ def signup(request):
 
 @csrf_exempt
 def login_view(request):
-    if request.method == 'POST':
-        data = request.POST
-        username = data.get('username')
-        password = data.get('password')
+    if request.method == "POST":
+        data = json.loads(request.body)
+        username = data.get("username")
+        password = data.get("password")
 
-        user = authenticate(request, username=username, password=password)
-
+        user = authenticate(username=username, password=password)
         if user is not None:
-            login(request, user)
-            return JsonResponse({'message': 'Login successful'}, status=200)
+            # Login successful
+            return JsonResponse({"message": "Login successful"}, status=200)
         else:
-            return JsonResponse({'error': 'Invalid credentials'}, status=400)
+            # Invalid credentials
+            return JsonResponse({"error": "Invalid credentials"}, status=400)
+    return JsonResponse({"error": "Invalid request method"}, status=405)
+
+
+
+
+@csrf_exempt
+def delete_account(request):
+    if request.method == "DELETE":
+        try:
+            data = json.loads(request.body)
+            username = data.get("username")
+            user = User.objects.get(username=username)
+            user.delete()  # Deletes the user from the database
+            return JsonResponse({"message": "Account deleted successfully."})
+        except User.DoesNotExist:
+            return JsonResponse({"error": "User not found."}, status=404)
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)
+
+#TODO: HASH PASSWORDS
